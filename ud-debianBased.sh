@@ -24,12 +24,10 @@ do
 	if [[ $updateChoice == 'a'  || $updateChoice == 'A' ]] ;
 		then 
 		UpdateType="conservative upgrade"
-		echo UpdateType
 		break
 	elif [[ $updateChoice == 'd' || $updateChoice == 'D' ]];
 		then 
 		UpdateType="comprehensive upgrade"
-		echo UpdateType
 		break
 	else
 		echo "Invalid response. Please try again: ";
