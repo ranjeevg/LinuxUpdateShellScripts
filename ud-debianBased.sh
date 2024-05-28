@@ -49,6 +49,3 @@ elif [[ $updateChoice == 'd' || $updateChoice == 'D' ]];
 	then
 	sudo apt dist-upgrade
 fi
-
-# custom exit msg based on if the script ran successfully
-$ echo $
