@@ -40,6 +40,13 @@ done
 echo "OK. Proceeding with a $UpdateType:";
 sleep 1
 
+# reusing our good friends $UpdateChoice and $UpdateType
+# the main purpose is to verify if the user wants to refresh the keyring
+
+echo 'Refreshing the keyring:'
+pacman -Sy archlinux-keyring
+sleep 1
+
 # can easily be modified for package manager of choice
 
 if [[ $updateChoice == 'r' || $updateChoice == 'R' ]];
