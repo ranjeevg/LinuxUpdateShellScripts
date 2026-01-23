@@ -40,8 +40,22 @@ done
 echo "OK. Proceeding with a $UpdateType:";
 sleep 1
 
-# reusing our good friends $UpdateChoice and $UpdateType
-# the main purpose is to verify if the user wants to refresh the keyring
+# asking if the user wants to update the keyring too 
+read -p "Do you want to update the arch linux keyring before beginning your system upgrade (y/N)?" refreshKeyring;
+
+if [[ $refreshKeyring == 'Y' || $refreshKeyring == 'Y' ]]
+	then
+	RefreshKeyringString = "(chosen to update keyring)";
+	else 
+	RefreshKeyringString = "(proceeding without updating keyring)";
+fi
+
+echo $RefreshKeyringString;
+
+if [[ $refreshKeyring == 'Y' || $refreshKeyring == 'Y' ]]
+	then
+	pacman -Sy archlinux-keyring && pacman -Su;
+fi
 
 echo 'Refreshing the keyring:'
 pacman -Sy archlinux-keyring
