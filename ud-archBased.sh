@@ -40,6 +40,27 @@ done
 echo "OK. Proceeding with a $UpdateType:";
 sleep 1
 
+# asking if the user wants to update the keyring too 
+read -p "Do you want to update the arch linux keyring before beginning your system upgrade (y/N)?" refreshKeyring;
+
+if [[ $refreshKeyring == 'Y' || $refreshKeyring == 'Y' ]]
+	then
+	RefreshKeyringString = "(chosen to update keyring)";
+	else 
+	RefreshKeyringString = "(proceeding without updating keyring)";
+fi
+
+echo $RefreshKeyringString;
+
+if [[ $refreshKeyring == 'Y' || $refreshKeyring == 'Y' ]]
+	then
+	sudo pacman -Sy archlinux-keyring && sudo pacman -Su;
+fi
+
+echo 'Refreshing the keyring:'
+pacman -Sy archlinux-keyring
+sleep 1
+
 # can easily be modified for package manager of choice
 
 if [[ $updateChoice == 'r' || $updateChoice == 'R' ]];
