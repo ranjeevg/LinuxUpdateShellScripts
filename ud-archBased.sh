@@ -54,7 +54,7 @@ echo $RefreshKeyringString;
 
 if [[ $refreshKeyring == 'Y' || $refreshKeyring == 'Y' ]]
 	then
-	pacman -Sy archlinux-keyring && pacman -Su;
+	sudo pacman -Sy archlinux-keyring && sudo pacman -Su;
 fi
 
 echo 'Refreshing the keyring:'
