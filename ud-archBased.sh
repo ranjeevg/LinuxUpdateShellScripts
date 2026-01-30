@@ -43,29 +43,42 @@ sleep 1
 # asking if the user wants to update the keyring too 
 read -p "Do you want to update the arch linux keyring before beginning your system upgrade (y/N)?" refreshKeyring;
 
-if [[ $refreshKeyring == 'Y' || $refreshKeyring == 'Y' ]]
+-- keep going until the user enters a valid answer
+while [[true]];
+do
+	if [[ $refreshKeyring == 'Y' || $refreshKeyring == 'y' ]]
 	then
-	RefreshKeyringString = "(chosen to update keyring)";
-	else 
+	RefreshKeyringString = "(chosen to update keyring. Please note that the process involves a regular update, which will begin now.)";
+	break;
+	elif [[$refreshKeyring == 'N' || $refreshKeyring == 'n'];]
 	RefreshKeyringString = "(proceeding without updating keyring)";
-fi
+	break;
+	else
+	RefreshKeyringString = "(invalid choice, please try again.)";
+	echo;
+	fi
 
+done
+
+echo
 echo $RefreshKeyringString;
 
-if [[ $refreshKeyring == 'Y' || $refreshKeyring == 'Y' ]]
+if [[ $refreshKeyring == 'Y' || $refreshKeyring == 'y' ]]
 	then
 	sudo pacman -Sy archlinux-keyring && sudo pacman -Su;
 fi
 
 echo 'Refreshing the keyring:'
-pacman -Sy archlinux-keyring
 sleep 1
 
 # can easily be modified for package manager of choice
 
 if [[ $updateChoice == 'r' || $updateChoice == 'R' ]];
 	then 
-	sudo pacman -Syu
+	echo
+	# perhaps reword it to sound friendlier later?
+	echo "Your requested keyring refresh needed to perform a regular system update as part of the process. This has already been done."
+	echo
 elif [[ $updateChoice == 'c' || $updateChoice == 'C' ]];
 	then
 	sudo pacman -Syyu
