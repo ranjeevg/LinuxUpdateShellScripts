@@ -55,13 +55,13 @@ do
 	break;
 	else
 	RefreshKeyringString = "(invalid choice, please try again.)";
-	echo;
 	fi
 
 done
 
 echo
 echo $RefreshKeyringString;
+echo
 
 if [[ $refreshKeyring == 'Y' || $refreshKeyring == 'y' ]]
 	then
