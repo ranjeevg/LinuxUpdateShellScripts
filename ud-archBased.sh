@@ -40,12 +40,12 @@ done
 echo "OK. Proceeding with a $UpdateType:";
 sleep 1
 
-# asking if the user wants to update the keyring too 
-read -p "Do you want to update the Arch Linux keyring before beginning your system upgrade (y/n)?  " refreshKeyring;
-
 # keep going until the user enters a valid answer
 while [[ true ]];
 do
+	# asking if the user wants to update the keyring too 
+	read -p "Do you want to update the Arch Linux keyring before beginning your system upgrade (y/n)?  " refreshKeyring;
+	
 	if [[ $refreshKeyring == 'Y' || $refreshKeyring == 'y' ]]
 		then
 		RefreshKeyringString="(chosen to update keyring. Please note that the process involves a regular update, which will begin now.)";
@@ -58,7 +58,6 @@ do
 		RefreshKeyringString="(invalid choice, please try again.)";
 	fi
 
-	echo
 	echo $RefreshKeyringString;
 
 done
