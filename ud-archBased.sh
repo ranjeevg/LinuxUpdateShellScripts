@@ -29,7 +29,7 @@ do
 		break
 	elif [[ $updateChoice == 'c' || $updateChoice == 'C' ]];
 		then 
-		UpdateType="comprehensive upgrade"
+		UpdateType="comprehensive upgra
 		break
 	else
 		echo "Invalid response. Please try again: ";
@@ -41,45 +41,55 @@ echo "OK. Proceeding with a $UpdateType:";
 sleep 1
 
 # asking if the user wants to update the keyring too 
-read -p "Do you want to update the arch linux keyring before beginning your system upgrade (y/N)?" refreshKeyring;
+read -p "Do you want to update the Arch Linux keyring before beginning your system upgrade (y/n)?  " refreshKeyring;
 
--- keep going until the user enters a valid answer
-while [[true]];
+# keep going until the user enters a valid answer
+while [[ true ]];
 do
 	if [[ $refreshKeyring == 'Y' || $refreshKeyring == 'y' ]]
-	then
-	RefreshKeyringString = "(chosen to update keyring. Please note that the process involves a regular update, which will begin now.)";
-	break;
-	elif [[$refreshKeyring == 'N' || $refreshKeyring == 'n'];]
-	RefreshKeyringString = "(proceeding without updating keyring)";
-	break;
+		then
+		RefreshKeyringString="(chosen to update keyring. Please note that the process involves a regular update, which will begin now.)";
+		break;
+	elif [[ $refreshKeyring == 'N' || $refreshKeyring == 'n' ]];
+		then
+		RefreshKeyringString="(proceeding without updating keyring)";
+		break;
 	else
-	RefreshKeyringString = "(invalid choice, please try again.)";
+		RefreshKeyringString="(invalid choice, please try again.)";
 	fi
+
+	echo
+	echo $RefreshKeyringString;
 
 done
 
-echo
-echo $RefreshKeyringString;
-echo
-
 if [[ $refreshKeyring == 'Y' || $refreshKeyring == 'y' ]]
 	then
+	echo 'Refreshing the keyring:'
+	sleep 1
 	sudo pacman -Sy archlinux-keyring && sudo pacman -Su;
 fi
-
-echo 'Refreshing the keyring:'
-sleep 1
 
 # can easily be modified for package manager of choice
 
 if [[ $updateChoice == 'r' || $updateChoice == 'R' ]];
 	then 
-	echo
-	# perhaps reword it to sound friendlier later?
-	echo "Your requested keyring refresh needed to perform a regular system update as part of the process. This has already been done."
-	echo
+	if [[ $refreshKeyring == 'Y' || $refreshKeyring == 'y' ]];
+		then
+		echo
+		echo "Your requested keyring refresh needed to perform a regular system update as part of the process. This has already been done."
+		echo
+	else
+		echo
+		echo "Performing regular update now: "
+		sleep 1.5
+		sudo pacman -Syu
+	fi
 elif [[ $updateChoice == 'c' || $updateChoice == 'C' ]];
 	then
+	echo
+	echo "Performing comprehensive upgrade now."
+	echo
+	sleep 1.5
 	sudo pacman -Syyu
 fi
