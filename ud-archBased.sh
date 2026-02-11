@@ -80,7 +80,7 @@ if [[ $updateChoice == 'r' || $updateChoice == 'R' ]];
 		echo
 	else
 		echo
-		echo "Performing regular update now: "
+		echo "Performing regular update now."
 		sleep 1.5
 		sudo pacman -Syu
 	fi
