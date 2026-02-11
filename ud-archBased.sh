@@ -25,11 +25,11 @@ do
 	# setting the variable and exiting the loop accordingly
 	if [[ $updateChoice == 'r'  || $updateChoice == 'R' ]] ;
 		then 
-		UpdateType="conservative upgrade"
+		UpdateType="regular upgrade"
 		break
 	elif [[ $updateChoice == 'c' || $updateChoice == 'C' ]];
 		then 
-		UpdateType="comprehensive upgra
+		UpdateType="comprehensive upgrade"
 		break
 	else
 		echo "Invalid response. Please try again: ";
