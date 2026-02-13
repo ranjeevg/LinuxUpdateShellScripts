@@ -10,7 +10,10 @@
 ##################################################################################################################################################
 
 clear;
-echo -e '\e[5m\e[34mAuthor: Ranjeev Grewal \e[0m';
+echo -e '\e[5m\e[34m'
+echo 'Author: Ranjeev Grewal'
+echo 'Email: ranjeev.grewal1349@arrow.ca'
+echo -e '\e[0m';
 echo
 
 # to keep the option-choosing going if the user types in something that isn't recognized
@@ -23,11 +26,11 @@ do
 	# setting the variable and exiting the loop accordingly
 	if [[ $updateChoice == 'a'  || $updateChoice == 'A' ]] ;
 		then 
-		UpdateType="conservative upgrade"
+		UpdateType="regular upgrade"
 		break
 	elif [[ $updateChoice == 'd' || $updateChoice == 'D' ]];
 		then 
-		UpdateType="comprehensive upgrade"
+		UpdateType="comprehensive 'dist-upgrade'"
 		break
 	else
 		echo "Invalid response. Please try again: ";
