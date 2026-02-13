@@ -12,6 +12,7 @@
 clear;
 echo -e '\e[5m\e[34m'
 echo 'Author: Ranjeev Grewal'
+echo 'Email : ranjeev.grrewal1349@gmail.com'
 echo -e '\e[0m'
 echo
 
